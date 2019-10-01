@@ -48,6 +48,7 @@ namespace WeatherApp.ViewModel
             {
                 selectedCity = value;
                 OnPropertyChanged("SelectedCity");
+                GetCurrentConditions();
             }
         }
 
@@ -68,7 +69,7 @@ namespace WeatherApp.ViewModel
                     {
                         Metric = new Units
                         {
-                            Value = 21
+                            Value = "21"
                         }
                     }
                 };
@@ -76,6 +77,13 @@ namespace WeatherApp.ViewModel
 
             SearchCommand = new SearchCommand(this);
             Cities = new ObservableCollection<City>();
+        }
+
+        private async void GetCurrentConditions()
+        {
+            Query = string.Empty;
+            Cities.Clear();
+            CurrrentConditions = await AccuWeatherHelper.GetCurrrentConditions(SelectedCity.Key);
         }
 
         public async void MakeQuery()
