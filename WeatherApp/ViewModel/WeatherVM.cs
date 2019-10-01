@@ -65,6 +65,7 @@ namespace WeatherApp.ViewModel
                 CurrrentConditions = new CurrrentConditions
                 {
                     WeatherText = "Partly cloudy",
+                    HasPrecipitation = true,
                     Temperature = new Temperature
                     {
                         Metric = new Units
